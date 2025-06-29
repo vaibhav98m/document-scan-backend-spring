@@ -28,7 +28,7 @@ public class OpenApiClient {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setBearerAuth(openApiToken);
 
-		Map<String, Object> requestBody = Map.of("model", "meta-llama/llama-4-scout-17b-16e-instruct", "messages",
+		Map<String, Object> requestBody = Map.of("model", "llama-3.3-70b-versatile", "messages",
 				new Object[] { Map.of("role", "user", "content", prompt) }, "temperature", 0.9);
 
 		HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
