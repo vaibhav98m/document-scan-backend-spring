@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.document.scan.entity.Otp;
+import com.document.scan.entity.OtpEntity;
 
-public interface OtpRepository extends JpaRepository<Otp, Long> {
-	Optional<Otp> findTopByEmailOrderByExpiryTimeDesc(String email);
+public interface OtpRepository extends JpaRepository<OtpEntity, Long> {
+	Optional<OtpEntity> findTopByEmailOrderByExpiryTimeDesc(String email);
 }

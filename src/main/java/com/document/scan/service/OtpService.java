@@ -6,7 +6,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.document.scan.entity.Otp;
+import com.document.scan.entity.OtpEntity;
 import com.document.scan.repository.OtpRepository;
 
 @Service
@@ -20,7 +20,7 @@ public class OtpService {
 
     public void generateOtp(String email) {
         String code = String.format("%06d", new Random().nextInt(999999));
-        Otp otp = new Otp();
+        OtpEntity otp = new OtpEntity();
         otp.setEmail(email);
         otp.setCode(code);
         otp.setExpiryTime(LocalDateTime.now().plusMinutes(5));
@@ -31,7 +31,7 @@ public class OtpService {
     }
 
     public boolean verifyOtp(String email, String code) {
-        Optional<Otp> otpOpt = otpRepository.findTopByEmailOrderByExpiryTimeDesc(email);
+        Optional<OtpEntity> otpOpt = otpRepository.findTopByEmailOrderByExpiryTimeDesc(email);
         return otpOpt.map(otp ->
             otp.getCode().equals(code) && otp.getExpiryTime().isAfter(LocalDateTime.now())
         ).orElse(false);

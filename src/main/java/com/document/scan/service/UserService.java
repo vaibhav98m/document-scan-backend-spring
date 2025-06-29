@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
-import com.document.scan.entity.User;
+import com.document.scan.entity.UserEntity;
 import com.document.scan.exception.CustomExcetion;
 import com.document.scan.model.UserRequest;
 import com.document.scan.model.ValidationResult;
@@ -23,7 +23,7 @@ public class UserService {
 	@Autowired
 	private EmailDomainValidator domainValidator;
 
-	public User onboardUser(UserRequest request) {
+	public UserEntity onboardUser(UserRequest request) {
 
 		ValidationResult result = domainValidator.validateEmail(request.getEmail());
 		ObjectMapper mapper = new ObjectMapper();
@@ -44,7 +44,7 @@ public class UserService {
 
 		// Check if user already exists
 		return userRepository.findByEmail(request.getEmail()).orElseGet(() -> {
-			User user = new User();
+			UserEntity user = new UserEntity();
 			user.setName(request.getFirstname() + " " + request.getLastname());
 			user.setEmail(request.getEmail());
 			return userRepository.save(user);

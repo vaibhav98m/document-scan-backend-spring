@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "otp_tokens")
 @Getter
 @Setter
-public class Otp {
+public class OtpEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
