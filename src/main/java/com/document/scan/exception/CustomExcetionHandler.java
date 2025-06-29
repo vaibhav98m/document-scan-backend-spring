@@ -134,7 +134,7 @@ public class CustomExcetionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(@NonNull MethodArgumentNotValidException ex,
 			@NonNull HttpHeaders headers, @NonNull HttpStatusCode status, @NonNull WebRequest request) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		System.out.println("=============>"+ ex.getLocalizedMessage());
+		System.out.println("=============>" + ex.getLocalizedMessage());
 		for (ObjectError error : ex.getBindingResult().getAllErrors()) {
 			Fault fault = constructFaultData(error.getDefaultMessage(), "008", "BUS", request.getHeader("uniqueId"));
 			if (!errorResponse.getFaults().contains(fault)) {
@@ -189,110 +189,126 @@ public class CustomExcetionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	// Regular expression to extract ISO 8601 UTC timestamp with 'Z'
-//	private static final Pattern TIMESTAMP_PATTERN = Pattern.compile("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z");
+	// private static final Pattern TIMESTAMP_PATTERN =
+	// Pattern.compile("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z");
 
 	// Method to extract the timestamp from a string
-//	private String extractTimestamp(String input) {
-//		Matcher matcher = TIMESTAMP_PATTERN.matcher(input);
-//		if (matcher.find()) {
-//			return matcher.group(); // Return the first matched timestamp
-//		}
-//		return null; // Return null if no match is found
-//	}
+	// private String extractTimestamp(String input) {
+	// Matcher matcher = TIMESTAMP_PATTERN.matcher(input);
+	// if (matcher.find()) {
+	// return matcher.group(); // Return the first matched timestamp
+	// }
+	// return null; // Return null if no match is found
+	// }
 
-//	private String formatTime(String utcTime) {
-//		// Input UTC timestamp
-//
-//		// Parse the UTC time
-//		ZonedDateTime utcDateTime = ZonedDateTime.parse(utcTime);
-//
-//		// Convert to IST
-//		ZonedDateTime istDateTime = utcDateTime.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
-//
-//		// Format the IST time
-//		String formattedIST = istDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z"));
-//
-//		// Output
-//		System.out.println("IST Time: " + formattedIST);
-//
-//		return formattedIST;
-//	}
+	// private String formatTime(String utcTime) {
+	// // Input UTC timestamp
+	//
+	// // Parse the UTC time
+	// ZonedDateTime utcDateTime = ZonedDateTime.parse(utcTime);
+	//
+	// // Convert to IST
+	// ZonedDateTime istDateTime =
+	// utcDateTime.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
+	//
+	// // Format the IST time
+	// String formattedIST =
+	// istDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z"));
+	//
+	// // Output
+	// System.out.println("IST Time: " + formattedIST);
+	//
+	// return formattedIST;
+	// }
 
 	// 401 Unauthorized Exception
-//	@ExceptionHandler(value = { TokenExpiredException.class })
-//	public ResponseEntity<Object> handleTokenExpiredException(TokenExpiredException ex, WebRequest request) {
-//		ErrorResponse errorResponse = new ErrorResponse();
-//
-//		String faultString = ex.getMessage();
-//
-//		String time = extractTimestamp(faultString);
-//
-//		if (time != null) {
-//			faultString = faultString.replace(time, "");
-//			time = formatTime(time);
-//			faultString = faultString.substring(0, faultString.length() - 1) + time;
-//
-//		}
-//
-//		Fault fault = constructFaultData(faultString, "021", "BUS", request.getHeader("uniqueId"));
-//		errorResponse.addNewFault(fault);
-//		return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
-//	}
-//
-//	// 401 Unauthorized Exception
-//	@ExceptionHandler(value = { IncorrectClaimException.class })
-//	public ResponseEntity<Object> handleIncorrectClaimException(IncorrectClaimException ex, WebRequest request) {
-//		ErrorResponse errorResponse = new ErrorResponse();
-//
-//		String faultString = ex.getMessage();
-//
-//		String time = extractTimestamp(faultString);
-//
-//		if (time != null) {
-//			faultString = faultString.replace(time, "");
-//			time = formatTime(time);
-//			faultString = faultString.substring(0, faultString.length() - 1) + time;
-//
-//		}
-//
-//		Fault fault = constructFaultData(faultString, "024", "BUS", request.getHeader("uniqueId"));
-//		errorResponse.addNewFault(fault);
-//		return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
-//	}
-//
-//	// 400 Bad Request
-//	@ExceptionHandler(value = { JWTDecodeException.class })
-//	public ResponseEntity<Object> handleJWTDecodeException(JWTDecodeException ex, WebRequest request) {
-//		ErrorResponse errorResponse = new ErrorResponse();
-//
-//		String faultString = ex.getMessage();
-//		Fault fault = constructFaultData(faultString, "022", "BUS", request.getHeader("uniqueId"));
-//		errorResponse.addNewFault(fault);
-//		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-//	}
+	// @ExceptionHandler(value = { TokenExpiredException.class })
+	// public ResponseEntity<Object>
+	// handleTokenExpiredException(TokenExpiredException ex, WebRequest request) {
+	// ErrorResponse errorResponse = new ErrorResponse();
+	//
+	// String faultString = ex.getMessage();
+	//
+	// String time = extractTimestamp(faultString);
+	//
+	// if (time != null) {
+	// faultString = faultString.replace(time, "");
+	// time = formatTime(time);
+	// faultString = faultString.substring(0, faultString.length() - 1) + time;
+	//
+	// }
+	//
+	// Fault fault = constructFaultData(faultString, "021", "BUS",
+	// request.getHeader("uniqueId"));
+	// errorResponse.addNewFault(fault);
+	// return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+	// }
+	//
+	// // 401 Unauthorized Exception
+	// @ExceptionHandler(value = { IncorrectClaimException.class })
+	// public ResponseEntity<Object>
+	// handleIncorrectClaimException(IncorrectClaimException ex, WebRequest request)
+	// {
+	// ErrorResponse errorResponse = new ErrorResponse();
+	//
+	// String faultString = ex.getMessage();
+	//
+	// String time = extractTimestamp(faultString);
+	//
+	// if (time != null) {
+	// faultString = faultString.replace(time, "");
+	// time = formatTime(time);
+	// faultString = faultString.substring(0, faultString.length() - 1) + time;
+	//
+	// }
+	//
+	// Fault fault = constructFaultData(faultString, "024", "BUS",
+	// request.getHeader("uniqueId"));
+	// errorResponse.addNewFault(fault);
+	// return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+	// }
+	//
+	// // 400 Bad Request
+	// @ExceptionHandler(value = { JWTDecodeException.class })
+	// public ResponseEntity<Object> handleJWTDecodeException(JWTDecodeException ex,
+	// WebRequest request) {
+	// ErrorResponse errorResponse = new ErrorResponse();
+	//
+	// String faultString = ex.getMessage();
+	// Fault fault = constructFaultData(faultString, "022", "BUS",
+	// request.getHeader("uniqueId"));
+	// errorResponse.addNewFault(fault);
+	// return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+	// }
 
-//	// 400 Bad Request
-//	@ExceptionHandler(value = { HttpClientErrorException.class })
-//	public ResponseEntity<Object> handleHttpClientErrorException(HttpClientErrorException ex, WebRequest request) {
-//		ErrorResponse errorResponse = new ErrorResponse();
-//
-//		String faultString = ex.getMessage();
-//		Fault fault = constructFaultData(faultString, "025", "BUS", request.getHeader("uniqueId"));
-//		errorResponse.addNewFault(fault);
-//		return new ResponseEntity<>(errorResponse, ex.getStatusCode());
-//	}
+	// // 400 Bad Request
+	// @ExceptionHandler(value = { HttpClientErrorException.class })
+	// public ResponseEntity<Object>
+	// handleHttpClientErrorException(HttpClientErrorException ex, WebRequest
+	// request) {
+	// ErrorResponse errorResponse = new ErrorResponse();
+	//
+	// String faultString = ex.getMessage();
+	// Fault fault = constructFaultData(faultString, "025", "BUS",
+	// request.getHeader("uniqueId"));
+	// errorResponse.addNewFault(fault);
+	// return new ResponseEntity<>(errorResponse, ex.getStatusCode());
+	// }
 
 	// 400 Bad Request
-//	@ExceptionHandler(value = { SignatureVerificationException.class })
-//	public ResponseEntity<Object> handleSignatureVerificationExceptionException(SignatureVerificationException ex,
-//			WebRequest request) {
-//		ErrorResponse errorResponse = new ErrorResponse();
-//
-//		String faultString = ex.getMessage();
-//		Fault fault = constructFaultData(faultString, "023", "BUS", request.getHeader("uniqueId"));
-//		errorResponse.addNewFault(fault);
-//		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-//	}
+	// @ExceptionHandler(value = { SignatureVerificationException.class })
+	// public ResponseEntity<Object>
+	// handleSignatureVerificationExceptionException(SignatureVerificationException
+	// ex,
+	// WebRequest request) {
+	// ErrorResponse errorResponse = new ErrorResponse();
+	//
+	// String faultString = ex.getMessage();
+	// Fault fault = constructFaultData(faultString, "023", "BUS",
+	// request.getHeader("uniqueId"));
+	// errorResponse.addNewFault(fault);
+	// return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+	// }
 
 	// 400 Bad Request
 	@ExceptionHandler(value = { MethodArgumentTypeMismatchException.class })

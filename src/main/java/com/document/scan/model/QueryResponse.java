@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QueryResponse {
-	private String id;
-	private String documentId;
+	private Integer id;
+	private Integer documentId;
 	private String question;
 	private String answer;
 	private Date timestamp;
@@ -18,7 +18,7 @@ public class QueryResponse {
 	public QueryResponse() {
 	}
 
-	public QueryResponse(String id, String documentId, String question, String answer, Date timestamp,
+	public QueryResponse(Integer id, Integer documentId, String question, String answer, Date timestamp,
 			Double confidence) {
 		this.id = id;
 		this.documentId = documentId;

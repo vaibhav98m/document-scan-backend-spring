@@ -1,5 +1,6 @@
 package com.document.scan.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,7 +17,11 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, Intege
      */
     List<DocumentEntity> findByDocumentName(String documentName);
 
-   
     @Query("SELECT d.uploadedBy, SUM(CAST(d.documentSize AS LONG)) FROM DocumentEntity d GROUP BY d.uploadedBy")
     List<Object[]> getTotalStorageByUser();
+
+    List<DocumentEntity> findByUploadedAtBefore(LocalDateTime cutoffDate);
+
+    @Query("SELECT COALESCE(MAX(d.documentId) + 1, 1) FROM DocumentEntity d")
+    Integer getNextDocumentId();
 }

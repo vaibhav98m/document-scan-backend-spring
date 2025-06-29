@@ -25,8 +25,8 @@ public class DocumentEntity {
     @Column(name = "document_name", nullable = false, length = 100)
     private String documentName;
 
-    @Column(name = "document_size", nullable = false, length = 50)
-    private String documentSize;
+    @Column(name = "document_size", nullable = false)
+    private long documentSize;
 
     @Column(name = "document_type", nullable = false, length = 50)
     private String documentType;
@@ -39,5 +39,5 @@ public class DocumentEntity {
     private LocalDateTime uploadedAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Query> queries = new ArrayList<>();
+    private List<QueryEntity> queries = new ArrayList<>();
 }

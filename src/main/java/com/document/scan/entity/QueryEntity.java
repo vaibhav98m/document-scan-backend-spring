@@ -24,10 +24,10 @@ public class QueryEntity {
     @JoinColumn(name = "document_id", nullable = false)
     private DocumentEntity document;
 
-    @Column(name = "question", nullable = false, length = 150)
+    @Column(name = "question", nullable = false, length = 1800)
     private String question;
 
-    @Column(name = "answer", nullable = false, length = 150)
+    @Column(name = "answer", nullable = false, length = 9000)
     private String answer;
 
     @Column(name = "conversation_id", nullable = false, unique = true, length = 150)

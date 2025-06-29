@@ -6,12 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApiResponse<T> {
-    private String status;
-    private String message;
-    private String error;
-    private T data;
-    
-    
+	private String status;
+	private String message;
+	private String error;
+	private T data;
+
 	public ApiResponse(String status, String message, String error, T data) {
 		super();
 		this.status = status;
@@ -19,9 +18,5 @@ public class ApiResponse<T> {
 		this.error = error;
 		this.data = data;
 	}
-    
-    
-    
 
-    // Constructors, Getters and Setters
 }
