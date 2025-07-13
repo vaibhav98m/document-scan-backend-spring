@@ -33,7 +33,4 @@ public class UserEntity {
 
     @Column(name = "mobile_number", length = 13)
     private String mobileNumber;
-
-    @OneToMany(mappedBy = "uploadedBy", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DocumentEntity> documents = new ArrayList<>();
 }

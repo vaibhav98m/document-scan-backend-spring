@@ -34,7 +34,7 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 import jakarta.persistence.PersistenceException;
 
-@ControllerAdvice
+// @ControllerAdvice
 public class CustomExcetionHandler extends ResponseEntityExceptionHandler {
 
 	// 500 Error

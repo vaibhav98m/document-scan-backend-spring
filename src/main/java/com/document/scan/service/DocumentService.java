@@ -13,13 +13,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.management.Query;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -175,6 +172,7 @@ public class DocumentService {
         QueryResponse response = new QueryResponse(
                 queryEntity.getId(),
                 queryEntity.getDocument().getDocumentId(),
+                queryEntity.getDocument().getDocumentName(),
                 queryEntity.getQuestion(),
                 queryEntity.getAnswer(),
                 Date.from(queryEntity.getCreatedAt().atZone(ZoneId.systemDefault()).toInstant()),
@@ -207,6 +205,7 @@ public class DocumentService {
             QueryResponse response = new QueryResponse(
                     query.getId(),
                     query.getDocument().getDocumentId(),
+                    query.getDocument().getDocumentName(),
                     query.getQuestion(),
                     query.getAnswer(),
                     createdAtDate,

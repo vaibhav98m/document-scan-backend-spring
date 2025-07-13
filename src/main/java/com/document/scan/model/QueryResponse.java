@@ -11,9 +11,7 @@ public class QueryResponse {
 
 	private Integer id;
 	private Integer documentId;
-
 	private String documentName;
-
 	private String question;
 	private String answer;
 	private Date timestamp;
